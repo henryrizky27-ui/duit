@@ -1440,10 +1440,14 @@ const CashierModule = ({ users, inventory, currentUser, showModal, hideModal, pa
     const patients = useMemo(() => users.filter(u => u.role === 'pasien'), [users]);
     
     const filteredInventory = useMemo(() => {
-        if (!searchTerm.trim()) return [];
-        return inventory.filter(item => 
-            item.name.toLowerCase().includes(searchTerm.toLowerCase())
-        );
+        const lowercasedFilter = searchTerm.toLowerCase();
+        // If no search term, the filter is empty and `.includes('')` will match all items.
+        // This allows all products to be shown initially.
+        return inventory.filter(item => {
+            // Safety check to ensure item.name exists and is a string before calling toLowerCase
+            if (!item.name || typeof item.name !== 'string') return false;
+            return item.name.toLowerCase().includes(lowercasedFilter);
+        });
     }, [inventory, searchTerm]);
 
     const subtotal = useMemo(() => cart.reduce((sum, item) => sum + (item.price * item.quantity), 0), [cart]);
@@ -1605,7 +1609,7 @@ const CashierModule = ({ users, inventory, currentUser, showModal, hideModal, pa
                     <div className="h-72 overflow-y-auto border rounded-md">
                         <table className="min-w-full">
                             <tbody className="divide-y">
-                                {searchTerm.trim() && filteredInventory.length > 0 ? (
+                                {filteredInventory.length > 0 ? (
                                     filteredInventory.map(item => (
                                         <tr key={item.id} className="hover:bg-gray-50">
                                             <td className="p-3">
@@ -1617,13 +1621,11 @@ const CashierModule = ({ users, inventory, currentUser, showModal, hideModal, pa
                                             </td>
                                         </tr>
                                     ))
-                                ) : searchTerm.trim() && filteredInventory.length === 0 ? (
-                                    <tr>
-                                        <td colSpan="2" className="text-center text-gray-500 py-4">Produk tidak ditemukan.</td>
-                                    </tr>
                                 ) : (
                                     <tr>
-                                        <td colSpan="2" className="text-center text-gray-500 py-4">Mulai ketik di kotak pencarian untuk melihat produk.</td>
+                                        <td colSpan="2" className="text-center text-gray-500 py-4">
+                                            {searchTerm.trim() ? "Produk tidak ditemukan." : "Tidak ada produk atau layanan yang tersedia."}
+                                        </td>
                                     </tr>
                                 )}
                             </tbody>
