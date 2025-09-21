@@ -377,7 +377,7 @@ const UserManagement = ({ users, branches, showModal, hideModal }) => {
     
     const EmployeeList = () => (
         <div className="bg-white rounded-lg shadow overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200"><thead className="bg-gray-50"><tr><th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nama</th><th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Jabatan</th><th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Cabang</th><th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Aksi</th></tr></thead><tbody className="bg-white divide-y divide-gray-200">{users.filter(u => u.role !== 'pasien').map(user => (<tr key={user.id}><td className="px-6 py-4 whitespace-nowrap"><div className="flex items-center"><div className="flex-shrink-0 h-10 w-10"><img className="h-10 w-10 rounded-full object-cover" src={user.photoUrl || `https://ui-avatars.com/api/?name=${user.name.split(' ').join('+')}&background=random`} alt="" /></div><div className="ml-4"><div className="text-sm font-medium text-gray-900">{user.name}</div><div className="text-sm text-gray-500">{user.email}</div></div></div></td><td className="px-6 py-4 whitespace-nowrap"><span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">{user.role}</span></td><td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{getBranchName(user.branchId)}</td><td className="px-6 py-4 whitespace-nowrap text-sm font-medium"><button onClick={() => handleEdit(user)} className="text-indigo-600 hover:text-indigo-900 mr-3"><Edit size={16}/></button><button onClick={() => handleDelete(user.id)} className="text-red-600 hover:text-red-900"><Trash2 size={16}/></button></td></tr>))}</tbody></table>
+            <table className="min-w-full divide-y divide-gray-200"><thead className="bg-blue-200"><tr><th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Nama</th><th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Jabatan</th><th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Cabang</th><th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Aksi</th></tr></thead><tbody className="bg-white divide-y divide-gray-200">{users.filter(u => u.role !== 'pasien').map(user => (<tr key={user.id}><td className="px-6 py-4 whitespace-nowrap"><div className="flex items-center"><div className="flex-shrink-0 h-10 w-10"><img className="h-10 w-10 rounded-full object-cover" src={user.photoUrl || `https://ui-avatars.com/api/?name=${user.name.split(' ').join('+')}&background=random`} alt="" /></div><div className="ml-4"><div className="text-sm font-medium text-gray-900">{user.name}</div><div className="text-sm text-gray-500">{user.email}</div></div></div></td><td className="px-6 py-4 whitespace-nowrap"><span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">{user.role}</span></td><td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{getBranchName(user.branchId)}</td><td className="px-6 py-4 whitespace-nowrap text-sm font-medium"><button onClick={() => handleEdit(user)} className="text-indigo-600 hover:text-indigo-900 mr-3"><Edit size={16}/></button><button onClick={() => handleDelete(user.id)} className="text-red-600 hover:text-red-900"><Trash2 size={16}/></button></td></tr>))}</tbody></table>
         </div>
     );
 
@@ -412,7 +412,7 @@ const UserManagement = ({ users, branches, showModal, hideModal }) => {
                             />
                         </div>
                         <div className="bg-white rounded-lg shadow overflow-x-auto">
-                           <table className="min-w-full divide-y divide-gray-200"><thead className="bg-gray-50"><tr><th className="px-6 py-3 text-left">Nama</th><th className="px-6 py-3 text-left">Kontak</th><th className="px-6 py-3 text-left">Alamat</th><th className="px-6 py-3 text-left">Cabang</th></tr></thead><tbody className="bg-white divide-y divide-gray-200">{employees.map(user => (<tr key={user.id}><td className="px-6 py-4"><div className="font-medium">{user.name}</div></td><td className="px-6 py-4">{user.email}<br/>{user.phone}</td><td className="px-6 py-4">{user.address}</td><td className="px-6 py-4">{getBranchName(user.branchId)}</td></tr>))}</tbody></table>
+                           <table className="min-w-full divide-y divide-gray-200"><thead className="bg-blue-200"><tr><th className="px-6 py-3 text-left text-gray-700 font-medium">Nama</th><th className="px-6 py-3 text-left text-gray-700 font-medium">Kontak</th><th className="px-6 py-3 text-left text-gray-700 font-medium">Alamat</th><th className="px-6 py-3 text-left text-gray-700 font-medium">Cabang</th></tr></thead><tbody className="bg-white divide-y divide-gray-200">{employees.map(user => (<tr key={user.id}><td className="px-6 py-4"><div className="font-medium">{user.name}</div></td><td className="px-6 py-4">{user.email}<br/>{user.phone}</td><td className="px-6 py-4">{user.address}</td><td className="px-6 py-4">{getBranchName(user.branchId)}</td></tr>))}</tbody></table>
                         </div>
                     </div>
                 ))}
@@ -423,7 +423,7 @@ const UserManagement = ({ users, branches, showModal, hideModal }) => {
     return (
         <div className="p-6">
             <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold">Manajemen Staf & Karyawan</h2>
+                <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Manajemen Staf & Karyawan</h2>
                 <button onClick={() => { resetForm(); setShowForm(true); }} className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 flex items-center"><PlusCircle size={18} className="mr-2"/> Tambah Karyawan</button>
             </div>
             
@@ -538,7 +538,7 @@ const BranchManagement = ({ branches, showModal, hideModal }) => {
     return (
         <div className="p-6">
             <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold">Manajemen Cabang</h2>
+                <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Manajemen Cabang</h2>
                 <button onClick={() => setShowForm(true)} className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 flex items-center">
                     <PlusCircle size={18} className="mr-2"/> Tambah Cabang
                 </button>
@@ -563,8 +563,8 @@ const BranchManagement = ({ branches, showModal, hideModal }) => {
             )}
             <div className="bg-white rounded-lg shadow overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
-                        <tr><th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nama</th><th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Alamat</th><th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Telepon</th><th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Aksi</th></tr>
+                    <thead className="bg-green-200">
+                        <tr><th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Nama</th><th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Alamat</th><th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Telepon</th><th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Aksi</th></tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
                         {branches.map(branch => (<tr key={branch.id}><td className="px-6 py-4 whitespace-nowrap">{branch.name}</td><td className="px-6 py-4 whitespace-nowrap">{branch.address}</td><td className="px-6 py-4 whitespace-nowrap">{branch.phone}</td><td className="px-6 py-4 whitespace-nowrap text-sm font-medium"><button onClick={() => handleEdit(branch)} className="text-indigo-600 hover:text-indigo-900 mr-3"><Edit size={16}/></button><button onClick={() => handleDelete(branch.id)} className="text-red-600 hover:text-red-900"><Trash2 size={16}/></button></td></tr>))}
@@ -724,13 +724,13 @@ const formatCurrency = (value) => `Rp ${new Intl.NumberFormat('id-ID').format(va
 
 
 const ReportCard = ({ title, value, icon, color }) => (
-    <div className="bg-white p-4 rounded-lg shadow flex items-center">
-        <div className={`p-3 rounded-full mr-4 ${color}`}>
+    <div className={`${color} p-6 rounded-2xl shadow-lg flex items-center text-white`}>
+        <div className="p-4 bg-white bg-opacity-30 rounded-xl mr-4">
             {icon}
         </div>
         <div>
-            <p className="text-sm text-gray-500">{title}</p>
-            <p className="text-xl font-bold text-gray-800">{value}</p>
+            <p className="text-base font-medium opacity-90">{title}</p>
+            <p className="text-3xl font-bold">{value}</p>
         </div>
     </div>
 );
@@ -803,13 +803,13 @@ const LedgerTab = ({ data }) => {
             </div>
             <div className="overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
+                    <thead className="bg-yellow-200">
                         <tr>
-                            <th className="px-4 py-2 text-left">Tanggal</th>
-                            <th className="px-4 py-2 text-left">Deskripsi</th>
-                            <th className="px-4 py-2 text-right">Debit</th>
-                            <th className="px-4 py-2 text-right">Kredit</th>
-                            <th className="px-4 py-2 text-right">Saldo</th>
+                            <th className="px-4 py-2 text-left text-gray-700 font-medium">Tanggal</th>
+                            <th className="px-4 py-2 text-left text-gray-700 font-medium">Deskripsi</th>
+                            <th className="px-4 py-2 text-right text-gray-700 font-medium">Debit</th>
+                            <th className="px-4 py-2 text-right text-gray-700 font-medium">Kredit</th>
+                            <th className="px-4 py-2 text-right text-gray-700 font-medium">Saldo</th>
                         </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
@@ -991,7 +991,7 @@ const FinancialManagement = ({ payments, expenses, inventory, branches, showModa
 
     return (
         <div className="p-2 sm:p-6 bg-gray-50 min-h-screen">
-            <h2 className="text-2xl lg:text-3xl font-bold text-gray-800 mb-6">Laporan Keuangan Profesional</h2>
+            <h2 className="text-2xl lg:text-3xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Laporan Keuangan Profesional</h2>
             <div className="bg-white p-4 rounded-xl shadow-md mb-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
@@ -1015,7 +1015,7 @@ const FinancialManagement = ({ payments, expenses, inventory, branches, showModa
                             onClick={() => setActiveTab(tab.id)}
                             className={`${
                                 activeTab === tab.id
-                                    ? 'bg-[#FF4500] text-white shadow-md'
+                                    ? 'bg-indigo-600 text-white shadow-md'
                                     : 'bg-white text-gray-600 hover:bg-gray-100'
                             } whitespace-nowrap py-3 px-4 rounded-t-lg font-semibold text-sm transition-all duration-200 ease-in-out`}
                         >
@@ -1130,7 +1130,7 @@ const LaboratoryManagement = ({ labResults, users, branches, showModal, hideModa
     return (
         <div className="p-6">
              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold">Laporan Hasil Laboratorium</h2>
+                <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Laporan Hasil Laboratorium</h2>
                 <button onClick={() => setShowAddForm(true)} className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 flex items-center">
                     <PlusCircle size={18} className="mr-2"/> Tambah Hasil Lab
                 </button>
@@ -1198,14 +1198,14 @@ const LaboratoryManagement = ({ labResults, users, branches, showModal, hideModa
 
             <div className="bg-white rounded-lg shadow overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
+                    <thead className="bg-purple-200">
                         <tr>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tanggal</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Pasien</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nama Tes</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Hasil</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">File</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Dokter</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Tanggal</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Pasien</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Nama Tes</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Hasil</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">File</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Dokter</th>
                         </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
@@ -1307,7 +1307,7 @@ const ExpertConsultationModule = ({ medicalRecords, users, branches, labResults,
 
     return (
         <div className="p-6">
-            <h2 className="text-2xl font-bold mb-6">Tim Ahli Pusat</h2>
+            <h2 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Tim Ahli Pusat</h2>
             {/* Filter UI */}
             <div className="bg-white p-4 rounded-lg shadow mb-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -1331,14 +1331,14 @@ const ExpertConsultationModule = ({ medicalRecords, users, branches, labResults,
             {/* Table of Medical Records */}
             <div className="bg-white rounded-lg shadow overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
+                    <thead className="bg-pink-200">
                         <tr>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tanggal</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Pasien</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Assessment</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Cabang</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Jml Konsultasi</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Aksi</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Tanggal</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Pasien</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Assessment</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Cabang</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Jml Konsultasi</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Aksi</th>
                         </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
@@ -1873,7 +1873,7 @@ const LiveChatModule = ({ currentUser, users, showModal, hideModal }) => {
                 <div className={`w-full md:w-1/3 lg:w-1/4 border-r border-gray-200 flex-col ${view === 'list' || !activeConversationId ? 'flex' : 'hidden md:flex'}`}>
                     <div className="p-4 border-b">
                         <div className="flex justify-between items-center">
-                            <h2 className="text-xl font-bold">Percakapan</h2>
+                            <h2 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Percakapan</h2>
                             <div className="flex items-center">
                                 <button onClick={() => setShowNewGroupModal(true)} title="Buat Grup Baru" className="p-2 rounded-full hover:bg-gray-100"><Users2 size={20} /></button>
                                 <button onClick={() => setShowNewChatModal(true)} title="Mulai Chat Baru" className="p-2 rounded-full hover:bg-gray-100"><PlusCircle size={20} /></button>
@@ -1897,9 +1897,9 @@ const LiveChatModule = ({ currentUser, users, showModal, hideModal }) => {
                 <div className={`flex-1 flex-col ${view === 'chat' && activeConversationId ? 'flex' : 'hidden md:flex'}`}>
                     {activeConversation ? (
                         <>
-                            <div className="p-4 border-b flex items-center">
+                            <div className="p-4 border-b flex items-center bg-indigo-200">
                                 <button onClick={() => setActiveConversationId(null)} className="mr-4 md:hidden text-gray-600"><X size={20} /></button>
-                                <h3 className="font-semibold">{otherParticipantName(activeConversation)}</h3>
+                                <h3 className="font-semibold text-gray-800">{otherParticipantName(activeConversation)}</h3>
                             </div>
                             <div className="flex-1 p-4 overflow-y-auto bg-gray-50">
                                 {messages.map(msg => {
@@ -2134,14 +2134,14 @@ const CompoundingModule = ({ currentUser, showModal, hideModal }) => {
 
                 <div className="overflow-x-auto">
                     <table className="min-w-full divide-y divide-gray-200">
-                        <thead className="bg-gray-50">
+                        <thead className="bg-red-200">
                             <tr>
-                                <th className="px-6 py-3 text-left">Nama</th>
-                                <th className="px-6 py-3 text-left">Pemasok</th>
-                                <th className="px-6 py-3 text-left">Stok</th>
-                                <th className="px-6 py-3 text-left">Harga</th>
-                                <th className="px-6 py-3 text-left">Kedaluwarsa</th>
-                                <th className="px-6 py-3 text-left">Aksi</th>
+                                <th className="px-6 py-3 text-left text-gray-700 font-medium">Nama</th>
+                                <th className="px-6 py-3 text-left text-gray-700 font-medium">Pemasok</th>
+                                <th className="px-6 py-3 text-left text-gray-700 font-medium">Stok</th>
+                                <th className="px-6 py-3 text-left text-gray-700 font-medium">Harga</th>
+                                <th className="px-6 py-3 text-left text-gray-700 font-medium">Kedaluwarsa</th>
+                                <th className="px-6 py-3 text-left text-gray-700 font-medium">Aksi</th>
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
@@ -2292,8 +2292,8 @@ const CompoundingModule = ({ currentUser, showModal, hideModal }) => {
 
                 <div className="overflow-x-auto">
                     <table className="min-w-full divide-y divide-gray-200">
-                        <thead className="bg-gray-50">
-                            <tr><th className="px-6 py-3 text-left">Nama Formula</th><th className="px-6 py-3 text-left">Deskripsi</th><th className="px-6 py-3 text-left">Aksi</th></tr>
+                        <thead className="bg-red-200">
+                            <tr><th className="px-6 py-3 text-left text-gray-700 font-medium">Nama Formula</th><th className="px-6 py-3 text-left text-gray-700 font-medium">Deskripsi</th><th className="px-6 py-3 text-left text-gray-700 font-medium">Aksi</th></tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
                             {formulas.map(form => (
@@ -2326,7 +2326,7 @@ const CompoundingModule = ({ currentUser, showModal, hideModal }) => {
 
     return (
         <div className="p-6 bg-gray-50 min-h-screen">
-            <h2 className="text-3xl font-bold text-gray-800 mb-6">Modul Tim Peracik Cabang</h2>
+            <h2 className="text-3xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Modul Tim Peracik Cabang</h2>
             <div className="mb-6">
                 <nav className="flex space-x-2 sm:space-x-4" aria-label="Tabs">
                     <button
@@ -2451,10 +2451,10 @@ const SettingsModule = ({ showModal }) => {
 
     return (
         <div className="p-6 bg-white rounded-lg shadow">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">Pengaturan Aplikasi</h2>
+            <h2 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Pengaturan Aplikasi</h2>
             <form onSubmit={handleSave} className="space-y-12">
                 {/* Section 1: Branding */}
-                <div className="p-6 border rounded-lg">
+                <div className="p-6 border rounded-lg bg-gray-200">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4">Branding & Umum</h3>
                     <div className="space-y-6">
                         <div>
@@ -2479,7 +2479,7 @@ const SettingsModule = ({ showModal }) => {
                 </div>
 
                 {/* Section 2: Admin Profile */}
-                <div className="p-6 border rounded-lg">
+                <div className="p-6 border rounded-lg bg-gray-200">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4">Profil Admin Penanggung Jawab</h3>
                     <div className="space-y-6">
                         <div>
@@ -2549,23 +2549,43 @@ const PusatCabangModule = ({ users, branches, payments, expenses, inventory, cur
 
         return (
             <div className="p-6 space-y-6">
-                <h2 className="text-3xl font-bold text-gray-800">Dashboard Pusat Terpadu</h2>
+                <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Dashboard Pusat Terpadu</h2>
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                    <div className="bg-white p-6 rounded-2xl shadow-lg flex items-center">
-                        <DollarSign size={32} className="text-green-500 mr-4"/>
-                        <div><p className="text-sm text-gray-600">Total Pendapatan</p><p className="text-2xl font-bold">Rp {totalRevenue.toLocaleString('id-ID')}</p></div>
+                    <div className="bg-green-500 p-6 rounded-2xl shadow-lg flex items-center text-white">
+                        <div className="p-4 bg-white bg-opacity-30 rounded-xl mr-4">
+                            <DollarSign size={32} className="text-white"/>
+                        </div>
+                        <div>
+                            <p className="text-base font-medium opacity-90">Total Pendapatan</p>
+                            <p className="text-3xl font-bold">Rp {totalRevenue.toLocaleString('id-ID')}</p>
+                        </div>
                     </div>
-                    <div className="bg-white p-6 rounded-2xl shadow-lg flex items-center">
-                        <TrendingUp size={32} className="text-blue-500 mr-4"/>
-                        <div><p className="text-sm text-gray-600">Laba Bersih</p><p className={`text-2xl font-bold ${netProfit >= 0 ? 'text-blue-600' : 'text-red-600'}`}>Rp {netProfit.toLocaleString('id-ID')}</p></div>
+                    <div className="bg-red-500 p-6 rounded-2xl shadow-lg flex items-center text-white">
+                        <div className="p-4 bg-white bg-opacity-30 rounded-xl mr-4">
+                            <TrendingUp size={32} className="text-white"/>
+                        </div>
+                        <div>
+                            <p className="text-base font-medium opacity-90">Laba Bersih</p>
+                            <p className="text-3xl font-bold">Rp {netProfit.toLocaleString('id-ID')}</p>
+                        </div>
                     </div>
-                    <div className="bg-white p-6 rounded-2xl shadow-lg flex items-center">
-                        <Users2 size={32} className="text-purple-500 mr-4"/>
-                        <div><p className="text-sm text-gray-600">Total Pengguna</p><p className="text-2xl font-bold">{totalUsers}</p></div>
+                    <div className="bg-blue-500 p-6 rounded-2xl shadow-lg flex items-center text-white">
+                        <div className="p-4 bg-white bg-opacity-30 rounded-xl mr-4">
+                            <Users2 size={32} className="text-white"/>
+                        </div>
+                        <div>
+                            <p className="text-base font-medium opacity-90">Total Pengguna</p>
+                            <p className="text-3xl font-bold">{totalUsers}</p>
+                        </div>
                     </div>
-                    <div className="bg-white p-6 rounded-2xl shadow-lg flex items-center">
-                        <Building size={32} className="text-teal-500 mr-4"/>
-                        <div><p className="text-sm text-gray-600">Total Cabang</p><p className="text-2xl font-bold">{totalBranches}</p></div>
+                    <div className="bg-purple-500 p-6 rounded-2xl shadow-lg flex items-center text-white">
+                        <div className="p-4 bg-white bg-opacity-30 rounded-xl mr-4">
+                            <Building size={32} className="text-white"/>
+                        </div>
+                        <div>
+                            <p className="text-base font-medium opacity-90">Total Cabang</p>
+                            <p className="text-3xl font-bold">{totalBranches}</p>
+                        </div>
                     </div>
                 </div>
 
@@ -2803,7 +2823,7 @@ const PusatCabangModule = ({ users, branches, payments, expenses, inventory, cur
         return (
             <div className="p-6">
                 <div className="flex justify-between items-center mb-6">
-                    <h2 className="text-2xl font-bold">Manajemen Inventaris Terpusat</h2>
+                    <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Manajemen Inventaris Terpusat</h2>
                     <button onClick={() => setShowAddForm(true)} className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 flex items-center">
                         <PlusCircle size={18} className="mr-2"/> Tambah Item
                     </button>
@@ -2819,12 +2839,12 @@ const PusatCabangModule = ({ users, branches, payments, expenses, inventory, cur
                 <h3 className="text-xl font-semibold mb-4">Ringkasan Stok Global</h3>
                 <div className="bg-white rounded-lg shadow overflow-x-auto mb-8">
                     <table className="min-w-full divide-y divide-gray-200">
-                        <thead className="bg-gray-50">
+                        <thead className="bg-teal-200">
                             <tr>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nama Item</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Total Stok</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Harga/Unit</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Supplier</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Nama Item</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Total Stok</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Harga/Unit</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Supplier</th>
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
@@ -2844,12 +2864,12 @@ const PusatCabangModule = ({ users, branches, payments, expenses, inventory, cur
                 <h3 className="text-xl font-semibold mb-4">Rincian Stok per Cabang</h3>
                 <div className="bg-white rounded-lg shadow overflow-x-auto">
                     <table className="min-w-full divide-y divide-gray-200">
-                        <thead className="bg-gray-50">
+                        <thead className="bg-teal-200">
                             <tr>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nama Item</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Cabang</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Stok</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Aksi</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Nama Item</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Cabang</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Stok</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Aksi</th>
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
@@ -3389,14 +3409,14 @@ export default function App() {
             <div onClick={toggleSidebar} className={`fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden transition-opacity duration-300 ${isSidebarOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}></div>
 
             {/* Sidebar */}
-            <div className={`fixed inset-y-0 left-0 transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0 w-64 bg-gray-800 text-white p-4 z-50 flex flex-col`}>
+            <div className={`fixed inset-y-0 left-0 transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0 w-64 bg-gradient-to-b from-blue-700 to-indigo-900 text-white p-4 z-50 flex flex-col`}>
                 <div className="flex justify-between items-center mb-6">
                     <img src={appSettings.logoUrl} alt="Logo Sibiomasi" className="h-12 w-12 rounded-full shadow-md"/>
                     <button onClick={toggleSidebar} className="text-white lg:hidden"><X size={24} /></button>
                 </div>
                 <nav className="flex-1 space-y-2 overflow-y-auto pr-2">
                     {filteredMenuItems.map(item => (
-                        <button key={item.id} onClick={() => { setActiveTab(item.id); setIsSidebarOpen(false); }} className={`w-full text-left px-4 py-3 rounded-md flex items-center transition-colors ${activeTab === item.id ? 'bg-indigo-600 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'}`}>
+                        <button key={item.id} onClick={() => { setActiveTab(item.id); setIsSidebarOpen(false); }} className={`w-full text-left px-4 py-3 rounded-md flex items-center transition-colors ${activeTab === item.id ? 'bg-white bg-opacity-20 text-white' : 'text-gray-300 hover:bg-white hover:bg-opacity-10 hover:text-white'}`}>
                             <item.icon size={20} className="mr-3" />
                             <span>{item.label}</span>
                         </button>
@@ -3595,7 +3615,7 @@ const PatientManagement = ({ users, branches, currentUser, showModal, hideModal 
     return (
         <div className="p-6">
             <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold">Manajemen Pasien</h2>
+                <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Manajemen Pasien</h2>
                 {isManagerOrStaf && (
                     <button onClick={() => { resetForm(); setShowForm(true); }} className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 flex items-center">
                         <PlusCircle size={18} className="mr-2"/> Tambah Pasien
@@ -3648,12 +3668,12 @@ const PatientManagement = ({ users, branches, currentUser, showModal, hideModal 
 
             <div className="bg-white rounded-lg shadow overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
+                    <thead className="bg-cyan-200">
                         <tr>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nama</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Kontak</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Cabang</th>
-                            {isManagerOrStaf && <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Aksi</th>}
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Nama</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Kontak</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Cabang</th>
+                            {isManagerOrStaf && <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Aksi</th>}
                         </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
@@ -3770,7 +3790,7 @@ const DoctorManagement = ({ users, branches, currentUser, showModal, hideModal }
     return (
         <div className="p-6">
             <div className="flex flex-col sm:flex-row justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold">Manajemen Dokter</h2>
+                <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Manajemen Dokter</h2>
                 {isManager && (
                     <button onClick={() => setShowForm(true)} className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 flex items-center mt-2 sm:mt-0">
                         <UserPlus size={18} className="mr-2"/> Tambah Dokter
@@ -3802,13 +3822,13 @@ const DoctorManagement = ({ users, branches, currentUser, showModal, hideModal }
 
             <div className="bg-white rounded-lg shadow overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
+                    <thead className="bg-lime-200">
                         <tr>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nama</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Spesialisasi</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Role</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Cabang</th>
-                            {isManager && <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Aksi</th>}
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Nama</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Spesialisasi</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Role</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Cabang</th>
+                            {isManager && <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Aksi</th>}
                         </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
@@ -3854,7 +3874,7 @@ const DoctorDashboard = ({ currentUser, appointments, users, labResults }) => {
 
     return (
         <div className="p-6 space-y-8 bg-gray-50">
-            <h2 className="text-3xl font-bold text-gray-800">Dasbor Dokter</h2>
+            <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Dasbor Dokter</h2>
 
             {/* Quick Stats */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -3885,7 +3905,7 @@ const DoctorDashboard = ({ currentUser, appointments, users, labResults }) => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Upcoming Appointments */}
                 <div className="bg-white p-6 rounded-2xl shadow-lg">
-                    <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                    <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center p-3 rounded-t-lg bg-orange-200">
                         <Calendar className="mr-2 text-blue-500" /> Jadwal Konsultasi Mendatang
                     </h3>
                     <div className="space-y-4 max-h-96 overflow-y-auto pr-2">
@@ -3910,7 +3930,7 @@ const DoctorDashboard = ({ currentUser, appointments, users, labResults }) => {
 
                 {/* Recent Lab Results */}
                 <div className="bg-white p-6 rounded-2xl shadow-lg">
-                    <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                    <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center p-3 rounded-t-lg bg-orange-200">
                         <FileText className="mr-2 text-purple-500" /> Laporan Hasil Lab Terbaru
                     </h3>
                     <div className="space-y-3 max-h-96 overflow-y-auto pr-2">
@@ -4049,7 +4069,7 @@ const AppointmentManagement = ({ appointments, users, branches, currentUser, sho
     return (
         <div className="p-6">
             <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold">Pemantauan Jadwal Konsultasi</h2>
+                <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Pemantauan Jadwal Konsultasi</h2>
                 <button onClick={() => setShowForm(true)} className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 flex items-center">
                     <PlusCircle size={18} className="mr-2"/> Tambah Jadwal
                 </button>
@@ -4114,14 +4134,14 @@ const AppointmentManagement = ({ appointments, users, branches, currentUser, sho
 
             <div className="bg-white rounded-lg shadow overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
+                    <thead className="bg-amber-200">
                         <tr>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Waktu Konsultasi</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Pasien</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Dokter</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Cabang</th>
-                            <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Status</th>
-                            <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Aksi</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Waktu Konsultasi</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Pasien</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Dokter</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Cabang</th>
+                            <th className="px-6 py-3 text-center text-xs font-medium text-gray-700 uppercase">Status</th>
+                            <th className="px-6 py-3 text-center text-xs font-medium text-gray-700 uppercase">Aksi</th>
                         </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
@@ -4257,7 +4277,7 @@ const LifestyleProgramManagement = ({ lifestylePrograms, users, branches, curren
     return (
         <div className="p-6">
             <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold">Pemantauan Program Lifestyle</h2>
+                <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Pemantauan Program Lifestyle</h2>
                 <button onClick={() => setShowForm(true)} className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 flex items-center">
                     <PlusCircle size={18} className="mr-2"/> Tambah Program
                 </button>
@@ -4314,15 +4334,15 @@ const LifestyleProgramManagement = ({ lifestylePrograms, users, branches, curren
 
             <div className="bg-white rounded-lg shadow overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
+                    <thead className="bg-emerald-200">
                         <tr>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Pasien</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Judul Program</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tipe</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Periode</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Cabang</th>
-                            <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Status</th>
-                            <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Aksi</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Pasien</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Judul Program</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Tipe</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Periode</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Cabang</th>
+                            <th className="px-6 py-3 text-center text-xs font-medium text-gray-700 uppercase">Status</th>
+                            <th className="px-6 py-3 text-center text-xs font-medium text-gray-700 uppercase">Aksi</th>
                         </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
@@ -4619,13 +4639,13 @@ const AttendanceModule = ({ currentUser, showModal, hideModal }) => {
                 <h3 className="font-bold text-lg mb-4">Riwayat Absensi Saya</h3>
                 <div className="bg-white rounded-lg shadow overflow-x-auto">
                     <table className="min-w-full divide-y divide-gray-200">
-                        <thead className="bg-gray-50">
+                        <thead className="bg-sky-200">
                             <tr>
-                                <th className="px-6 py-3 text-left">Tanggal</th>
-                                <th className="px-6 py-3 text-left">Jam Masuk</th>
-                                <th className="px-6 py-3 text-left">Lokasi Masuk</th>
-                                <th className="px-6 py-3 text-left">Jam Keluar</th>
-                                <th className="px-6 py-3 text-left">Lokasi Keluar</th>
+                                <th className="px-6 py-3 text-left text-gray-700 font-medium">Tanggal</th>
+                                <th className="px-6 py-3 text-left text-gray-700 font-medium">Jam Masuk</th>
+                                <th className="px-6 py-3 text-left text-gray-700 font-medium">Lokasi Masuk</th>
+                                <th className="px-6 py-3 text-left text-gray-700 font-medium">Jam Keluar</th>
+                                <th className="px-6 py-3 text-left text-gray-700 font-medium">Lokasi Keluar</th>
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
@@ -4673,12 +4693,12 @@ const AttendanceModule = ({ currentUser, showModal, hideModal }) => {
                         </div>
                         <div className="bg-white rounded-lg shadow overflow-x-auto">
                            <table className="min-w-full divide-y divide-gray-200">
-                               <thead className="bg-gray-50">
+                               <thead className="bg-sky-200">
                                    <tr>
-                                       <th className="px-6 py-3 text-left">Nama</th>
-                                       <th className="px-6 py-3 text-left">Tanggal</th>
-                                       <th className="px-6 py-3 text-left">Jam Masuk</th>
-                                       <th className="px-6 py-3 text-left">Jam Keluar</th>
+                                       <th className="px-6 py-3 text-left text-gray-700 font-medium">Nama</th>
+                                       <th className="px-6 py-3 text-left text-gray-700 font-medium">Tanggal</th>
+                                       <th className="px-6 py-3 text-left text-gray-700 font-medium">Jam Masuk</th>
+                                       <th className="px-6 py-3 text-left text-gray-700 font-medium">Jam Keluar</th>
                                    </tr>
                                </thead>
                                <tbody className="bg-white divide-y divide-gray-200">
@@ -4702,7 +4722,7 @@ const AttendanceModule = ({ currentUser, showModal, hideModal }) => {
     return (
         <div className="p-6">
             <CameraModal />
-            <h2 className="text-2xl font-bold mb-6">Absensi Kehadiran</h2>
+            <h2 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Absensi Kehadiran</h2>
             
             {currentUser.role === 'manajemen' && (
                  <div className="mb-6 border-b border-gray-200">
@@ -4826,7 +4846,7 @@ const PayrollModule = ({ currentUser, users, branches, attendance, salaryStructu
                     </CustomModal>
                 )}
 
-                <div className="overflow-x-auto"><table className="min-w-full divide-y"><thead className="bg-gray-50"><tr><th className="px-4 py-2 text-left">Jabatan</th><th className="px-4 py-2 text-right">Gaji Pokok</th><th className="px-4 py-2 text-right">Tunj. Transport</th><th className="px-4 py-2 text-right">Tunj. Makan</th><th className="px-4 py-2 text-center">Aksi</th></tr></thead><tbody className="bg-white divide-y">{salaryStructures.map(s => (<tr key={s.id}><td className="px-4 py-2 font-medium capitalize">{s.id.replace(/_/g, ' ')}</td><td className="px-4 py-2 text-right">{formatCurrency(s.baseSalary)}</td><td className="px-4 py-2 text-right">{formatCurrency(s.transportAllowance)}</td><td className="px-4 py-2 text-right">{formatCurrency(s.mealAllowance)}</td><td className="px-4 py-2 text-center"><button onClick={() => handleEdit(s)} className="text-indigo-600 mr-3"><Edit size={16}/></button><button onClick={() => handleDelete(s.id)} className="text-red-600"><Trash2 size={16}/></button></td></tr>))}</tbody></table></div>
+                <div className="overflow-x-auto"><table className="min-w-full divide-y"><thead className="bg-violet-200"><tr><th className="px-4 py-2 text-left text-gray-700 font-medium">Jabatan</th><th className="px-4 py-2 text-right text-gray-700 font-medium">Gaji Pokok</th><th className="px-4 py-2 text-right text-gray-700 font-medium">Tunj. Transport</th><th className="px-4 py-2 text-right text-gray-700 font-medium">Tunj. Makan</th><th className="px-4 py-2 text-center text-gray-700 font-medium">Aksi</th></tr></thead><tbody className="bg-white divide-y">{salaryStructures.map(s => (<tr key={s.id}><td className="px-4 py-2 font-medium capitalize">{s.id.replace(/_/g, ' ')}</td><td className="px-4 py-2 text-right">{formatCurrency(s.baseSalary)}</td><td className="px-4 py-2 text-right">{formatCurrency(s.transportAllowance)}</td><td className="px-4 py-2 text-right">{formatCurrency(s.mealAllowance)}</td><td className="px-4 py-2 text-center"><button onClick={() => handleEdit(s)} className="text-indigo-600 mr-3"><Edit size={16}/></button><button onClick={() => handleDelete(s.id)} className="text-red-600"><Trash2 size={16}/></button></td></tr>))}</tbody></table></div>
             </div>
         );
     };
@@ -4879,7 +4899,7 @@ const PayrollModule = ({ currentUser, users, branches, attendance, salaryStructu
         return (
             <div className="bg-white p-6 rounded-lg shadow">
                 <div className="flex flex-col md:flex-row justify-between items-center mb-4 gap-4"><h3 className="text-xl font-bold">Proses Penggajian</h3><div className="flex items-center gap-2"><label htmlFor="payroll-period">Periode:</label><input type="month" id="payroll-period" value={period} onChange={e => setPeriod(e.target.value)} className="p-2 border rounded-md"/></div></div>
-                <div className="overflow-x-auto"><table className="min-w-full divide-y"><thead className="bg-gray-50"><tr><th className="px-4 py-2 text-left">Nama</th><th className="px-4 py-2 text-right">Gaji Pokok</th><th className="px-4 py-2 text-right">Tunjangan</th><th className="px-4 py-2 text-right">Potongan</th><th className="px-4 py-2 text-right">Gaji Bersih</th></tr></thead><tbody className="bg-white divide-y">{payrollData.map(emp => (<tr key={emp.id}><td className="px-4 py-2"><p className="font-medium">{emp.name}</p><p className="text-sm text-gray-500 capitalize">{emp.role.replace(/_/g, ' ')}</p></td><td className="px-4 py-2 text-right">{formatCurrency(emp.baseSalary)}</td><td className="px-4 py-2 text-right">{formatCurrency(emp.transportAllowance + emp.mealAllowance)}</td><td className="px-4 py-2 text-right text-red-600">{formatCurrency(emp.deductions)}</td><td className="px-4 py-2 text-right font-bold">{formatCurrency(emp.netSalary)}</td></tr>))}</tbody><tfoot className="bg-gray-100 font-bold"><tr><td colSpan="4" className="px-4 py-2 text-right">Total Gaji Bersih</td><td className="px-4 py-2 text-right">{formatCurrency(totalNetSalary)}</td></tr></tfoot></table></div>
+                <div className="overflow-x-auto"><table className="min-w-full divide-y"><thead className="bg-violet-200"><tr><th className="px-4 py-2 text-left text-gray-700 font-medium">Nama</th><th className="px-4 py-2 text-right text-gray-700 font-medium">Gaji Pokok</th><th className="px-4 py-2 text-right text-gray-700 font-medium">Tunjangan</th><th className="px-4 py-2 text-right text-gray-700 font-medium">Potongan</th><th className="px-4 py-2 text-right text-gray-700 font-medium">Gaji Bersih</th></tr></thead><tbody className="bg-white divide-y">{payrollData.map(emp => (<tr key={emp.id}><td className="px-4 py-2"><p className="font-medium">{emp.name}</p><p className="text-sm text-gray-500 capitalize">{emp.role.replace(/_/g, ' ')}</p></td><td className="px-4 py-2 text-right">{formatCurrency(emp.baseSalary)}</td><td className="px-4 py-2 text-right">{formatCurrency(emp.transportAllowance + emp.mealAllowance)}</td><td className="px-4 py-2 text-right text-red-600">{formatCurrency(emp.deductions)}</td><td className="px-4 py-2 text-right font-bold">{formatCurrency(emp.netSalary)}</td></tr>))}</tbody><tfoot className="bg-gray-100 font-bold"><tr><td colSpan="4" className="px-4 py-2 text-right">Total Gaji Bersih</td><td className="px-4 py-2 text-right">{formatCurrency(totalNetSalary)}</td></tr></tfoot></table></div>
                 <div className="mt-6 flex justify-end"><button onClick={handleRunPayroll} disabled={isProcessing} className="bg-green-600 text-white font-bold py-2 px-6 rounded-md hover:bg-green-700 disabled:bg-gray-400">{isProcessing ? <Loader2 className="animate-spin"/> : 'Jalankan & Catat Penggajian'}</button></div>
             </div>
         );
@@ -4952,7 +4972,7 @@ const PayrollModule = ({ currentUser, users, branches, attendance, salaryStructu
                 {periodData ? (
                     <div className="overflow-x-auto">
                         <table className="min-w-full divide-y">
-                            <thead className="bg-gray-50"><tr><th className="px-4 py-2 text-left">Nama</th><th className="px-4 py-2 text-right">Gaji Bersih</th><th className="px-4 py-2 text-center">Aksi</th></tr></thead>
+                            <thead className="bg-violet-200"><tr><th className="px-4 py-2 text-left text-gray-700 font-medium">Nama</th><th className="px-4 py-2 text-right text-gray-700 font-medium">Gaji Bersih</th><th className="px-4 py-2 text-center text-gray-700 font-medium">Aksi</th></tr></thead>
                             <tbody className="bg-white divide-y">
                                 {periodData.employeeData.map(emp => (
                                     <tr key={emp.id}>
@@ -4992,7 +5012,7 @@ const PayrollModule = ({ currentUser, users, branches, attendance, salaryStructu
 
     return (
         <div className="p-6 bg-gray-50 min-h-screen">
-            <h2 className="text-3xl font-bold text-gray-800 mb-6">Manajemen Penggajian</h2>
+            <h2 className="text-3xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Manajemen Penggajian</h2>
             <div className="mb-6">
                 <nav className="flex space-x-2 sm:space-x-4" aria-label="Tabs">
                     <button onClick={() => setActiveTab('dashboard')} className={`${activeTab === 'dashboard' ? 'bg-indigo-600 text-white shadow-md' : 'bg-white text-gray-600 hover:bg-gray-100'} whitespace-nowrap py-3 px-4 rounded-md font-semibold text-sm`}>Dasbor</button>
@@ -5108,7 +5128,7 @@ const HBOTManagement = ({ hbotSessions, users, branches, currentUser, showModal,
     return (
         <div className="p-6">
             <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold">Pemantauan Terapi HBOT</h2>
+                <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Pemantauan Terapi HBOT</h2>
                 <button onClick={() => setShowForm(true)} className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 flex items-center">
                     <PlusCircle size={18} className="mr-2"/> Tambah Sesi
                 </button>
@@ -5164,16 +5184,16 @@ const HBOTManagement = ({ hbotSessions, users, branches, currentUser, showModal,
 
             <div className="bg-white rounded-lg shadow overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
+                    <thead className="bg-rose-200">
                         <tr>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tanggal</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Pasien</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Sesi Ke-#</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Durasi (Menit)</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tekanan (ATA)</th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Cabang</th>
-                            <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Status</th>
-                            <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Aksi</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Tanggal</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Pasien</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Sesi Ke-#</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Durasi (Menit)</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Tekanan (ATA)</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase">Cabang</th>
+                            <th className="px-6 py-3 text-center text-xs font-medium text-gray-700 uppercase">Status</th>
+                            <th className="px-6 py-3 text-center text-xs font-medium text-gray-700 uppercase">Aksi</th>
                         </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
