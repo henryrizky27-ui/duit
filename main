@@ -1440,9 +1440,14 @@ const CashierModule = ({ users, inventory, currentUser, showModal, hideModal, pa
     const patients = useMemo(() => users.filter(u => u.role === 'pasien'), [users]);
     
     const filteredInventory = useMemo(() => {
-        if (!searchTerm.trim()) return [];
-        return inventory.filter(item => 
-            item.name.toLowerCase().includes(searchTerm.toLowerCase())
+        const term = searchTerm.trim().toLowerCase();
+        if (term === '') {
+            // If there is no search term, show all inventory items.
+            return inventory;
+        }
+        // Otherwise, filter the inventory, ensuring item.name exists.
+        return inventory.filter(item =>
+            item.name && item.name.toLowerCase().includes(term)
         );
     }, [inventory, searchTerm]);
 
@@ -1605,7 +1610,7 @@ const CashierModule = ({ users, inventory, currentUser, showModal, hideModal, pa
                     <div className="h-72 overflow-y-auto border rounded-md">
                         <table className="min-w-full">
                             <tbody className="divide-y">
-                                {searchTerm.trim() && filteredInventory.length > 0 ? (
+                                {filteredInventory.length > 0 ? (
                                     filteredInventory.map(item => (
                                         <tr key={item.id} className="hover:bg-gray-50">
                                             <td className="p-3">
@@ -1617,13 +1622,17 @@ const CashierModule = ({ users, inventory, currentUser, showModal, hideModal, pa
                                             </td>
                                         </tr>
                                     ))
-                                ) : searchTerm.trim() && filteredInventory.length === 0 ? (
+                                ) : searchTerm.trim() ? (
                                     <tr>
-                                        <td colSpan="2" className="text-center text-gray-500 py-4">Produk tidak ditemukan.</td>
+                                        <td colSpan="2" className="text-center text-gray-500 py-4">
+                                            Produk tidak ditemukan.
+                                        </td>
                                     </tr>
                                 ) : (
                                     <tr>
-                                        <td colSpan="2" className="text-center text-gray-500 py-4">Mulai ketik di kotak pencarian untuk melihat produk.</td>
+                                        <td colSpan="2" className="text-center text-gray-500 py-4">
+                                            Tidak ada produk atau layanan yang tersedia saat ini.
+                                        </td>
                                     </tr>
                                 )}
                             </tbody>
