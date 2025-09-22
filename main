@@ -190,7 +190,7 @@ const LoginForm = ({ appSettings }) => {
             <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-2xl">
                 <div>
                     <img src={appSettings.logoUrl} alt="Logo Sibiomasi" className="mx-auto h-20 w-20 rounded-full shadow-md"/>
-                    <h2 className="mt-6 text-center text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-500">
+                    <h2 className="mt-6 text-center text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">
                         {appSettings.clinicName}
                     </h2>
                 </div>
@@ -239,7 +239,7 @@ const Header = ({ currentUser, toggleSidebar, handleLogout, appSettings, theme, 
                             <Menu size={24} />
                         </button>
                         <img src={appSettings.logoUrl} alt="Logo Sibiomasi" className="h-10 w-10 rounded-full shadow-md mr-3"/>
-                        <h1 className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-500 hidden md:block">{appSettings.clinicName}</h1>
+                        <h1 className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600 hidden md:block">{appSettings.clinicName}</h1>
                     </div>
                     <div className="flex items-center space-x-2">
                         <ThemeToggler theme={theme} setTheme={setTheme} />
@@ -991,7 +991,7 @@ const FinancialManagement = ({ payments, expenses, inventory, branches, showModa
 
     return (
         <div className="p-2 sm:p-6 bg-gray-50 min-h-screen">
-            <h2 className="text-2xl lg:text-3xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Laporan Keuangan Profesional</h2>
+            <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Laporan Keuangan Profesional</h2>
             <div className="bg-white p-4 rounded-xl shadow-md mb-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
@@ -1593,7 +1593,7 @@ const CashierModule = ({ users, inventory, currentUser, showModal, hideModal, pa
         <div className="bg-gray-50 min-h-screen">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 p-6">
                 <div className="lg:col-span-2 bg-white p-6 rounded-lg shadow-md">
-                    <h3 className="text-xl font-semibold mb-4 text-gray-800">Pilih Produk & Layanan</h3>
+                    <h3 className="text-xl font-semibold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Pilih Produk & Layanan</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         <div>
                             <label htmlFor="patient-select" className="block text-sm font-medium text-gray-700 mb-1">Pilih Pasien</label>
@@ -2335,7 +2335,7 @@ const CompoundingModule = ({ currentUser, showModal, hideModal }) => {
 
     return (
         <div className="p-6 bg-gray-50 min-h-screen">
-            <h2 className="text-3xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Modul Tim Peracik Cabang</h2>
+            <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Modul Tim Peracik Cabang</h2>
             <div className="mb-6">
                 <nav className="flex space-x-2 sm:space-x-4" aria-label="Tabs">
                     <button
@@ -2558,7 +2558,7 @@ const PusatCabangModule = ({ users, branches, payments, expenses, inventory, cur
 
         return (
             <div className="p-6 space-y-6">
-                <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Dashboard Pusat Terpadu</h2>
+                <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Dashboard Pusat Terpadu</h2>
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                     <div className="bg-green-500 p-6 rounded-2xl shadow-lg flex items-center text-white">
                         <div className="p-4 bg-white bg-opacity-30 rounded-xl mr-4">
@@ -2845,7 +2845,7 @@ const PusatCabangModule = ({ users, branches, payments, expenses, inventory, cur
                 </div>
 
                 {/* Global Stock View */}
-                <h3 className="text-xl font-semibold mb-4">Ringkasan Stok Global</h3>
+                <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Ringkasan Stok Global</h3>
                 <div className="bg-white rounded-lg shadow overflow-x-auto mb-8">
                     <table className="min-w-full divide-y divide-gray-200">
                         <thead className="bg-teal-200">
@@ -2870,7 +2870,7 @@ const PusatCabangModule = ({ users, branches, payments, expenses, inventory, cur
                 </div>
 
                 {/* Rincian Stok Per Cabang */}
-                <h3 className="text-xl font-semibold mb-4">Rincian Stok per Cabang</h3>
+                <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Rincian Stok per Cabang</h3>
                 <div className="bg-white rounded-lg shadow overflow-x-auto">
                     <table className="min-w-full divide-y divide-gray-200">
                         <thead className="bg-teal-200">
@@ -3176,54 +3176,29 @@ export default function App() {
                     setCurrentUser(null);
                 }
 
-                // Attach snapshot listeners based on user role
-                const unsubs = [];
-                const userData = userDocSnap.data();
-                const role = userData.role;
+                // Attach snapshot listeners for all collections
+                const collectionsToWatch = [
+                    { name: 'users', setter: setUsers },
+                    { name: 'branches', setter: setBranches },
+                    { name: 'payments', setter: setPayments },
+                    { name: 'expenses', setter: setExpenses },
+                    { name: 'inventory', setter: setInventory },
+                    { name: 'labResults', setter: setLabResults },
+                    { name: 'medicalRecords', setter: setMedicalRecords },
+                    { name: 'expertConsultations', setter: setExpertConsultations },
+                    { name: 'appointments', setter: setAppointments },
+                    { name: 'lifestylePrograms', setter: setLifestylePrograms },
+                    { name: 'hbotSessions', setter: setHbotSessions },
+                    { name: 'attendance', setter: setAttendance },
+                    { name: 'salaryStructures', setter: setSalaryStructures },
+                    { name: 'payrollHistory', setter: setPayrollHistory },
+                ];
 
-                const setupListener = (q, setter) => {
-                    const unsub = onSnapshot(q,
-                        (snapshot) => setter(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))),
-                        (error) => console.error(`Error in snapshot listener:`, error)
-                    );
-                    unsubs.push(unsub);
-                };
-
-                // --- Base Listeners (for all roles) ---
-                setupListener(query(collection(db, 'users')), setUsers);
-                setupListener(query(collection(db, 'branches')), setBranches);
-
-                // --- Role-Specific Listeners ---
-                const { role, branchId } = userData;
-
-                if (role === 'manajemen') {
-                    // Management gets all data from all collections
-                    const collections = ['payments', 'expenses', 'inventory', 'labResults', 'medicalRecords', 'expertConsultations', 'appointments', 'lifestylePrograms', 'hbotSessions', 'attendance', 'salaryStructures', 'payrollHistory'];
-                    const setters = [setPayments, setExpenses, setInventory, setLabResults, setMedicalRecords, setExpertConsultations, setAppointments, setLifestylePrograms, setHbotSessions, setAttendance, setSalaryStructures, setPayrollHistory];
-                    collections.forEach((col, i) => setupListener(query(collection(db, col)), setters[i]));
-                } else if (role === 'doctor' || role === 'doctor_expert') {
-                    // Doctor/Expert access - only their own data
-                    setupListener(query(collection(db, 'appointments'), where('practitionerId', '==', user.uid)), setAppointments);
-                    setupListener(query(collection(db, 'medicalRecords'), where('practitionerId', '==', user.uid)), setMedicalRecords);
-                    setupListener(query(collection(db, 'labResults'), where('practitionerId', '==', user.uid)), setLabResults);
-                    setupListener(query(collection(db, 'expertConsultations')), setExpertConsultations); // Assumed to be readable by all clinical staff
-                    setupListener(query(collection(db, 'lifestylePrograms')), setLifestylePrograms); // Needs more specific rules/queries later
-                    setupListener(query(collection(db, 'hbotSessions')), setHbotSessions); // Needs more specific rules/queries later
-                    setupListener(query(collection(db, 'attendance'), where('userId', '==', user.uid)), setAttendance);
-                } else if (role === 'staf_operasional') {
-                    // Operational staff access - data for their branch
-                    if (branchId) {
-                        setupListener(query(collection(db, 'payments'), where('branchId', '==', branchId)), setPayments);
-                        setupListener(query(collection(db, 'expenses'), where('branchId', '==', branchId)), setExpenses);
-                        setupListener(query(collection(db, 'inventory'), where('branchId', '==', branchId)), setInventory);
-                        setupListener(query(collection(db, 'appointments'), where('branchId', '==', branchId)), setAppointments);
-                        setupListener(query(collection(db, 'labResults'), where('branchId', '==', branchId)), setLabResults);
-                    }
-                    // Staff also need to see some general data
-                    setupListener(query(collection(db, 'lifestylePrograms')), setLifestylePrograms);
-                    setupListener(query(collection(db, 'hbotSessions')), setHbotSessions);
-                    setupListener(query(collection(db, 'attendance'), where('userId', '==', user.uid)), setAttendance);
-                }
+                const unsubs = collectionsToWatch.map(c =>
+                    onSnapshot(collection(db, c.name), snapshot =>
+                        c.setter(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })))
+                    )
+                );
 
                 setLoading(false); // Stop loading after listeners are attached
 
@@ -3337,7 +3312,7 @@ export default function App() {
 
                 return (
                     <div className="p-6 space-y-6">
-                        <h2 className="text-2xl font-bold text-gray-800">Ringkasan Dasbor</h2>
+                        <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Ringkasan Dasbor</h2>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                             <div className="bg-white p-6 rounded-2xl shadow-lg flex items-center">
@@ -3360,7 +3335,7 @@ export default function App() {
 
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                             <div className="bg-white p-6 rounded-2xl shadow-lg">
-                                <h3 className="text-lg font-bold text-gray-800 mb-4">Distribusi Pendapatan (Semua Waktu)</h3>
+                                <h3 className="text-lg font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Distribusi Pendapatan (Semua Waktu)</h3>
                                 <ResponsiveContainer width="100%" height={250}>
                                     <PieChart>
                                         <Pie data={revenuePieData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={100} labelLine={false} label={({name, percent}) => `${name} ${(percent * 100).toFixed(0)}%`}>
@@ -3372,7 +3347,7 @@ export default function App() {
                                 </ResponsiveContainer>
                             </div>
                             <div className="bg-white p-6 rounded-2xl shadow-lg">
-                                <h3 className="text-lg font-bold text-gray-800 mb-4">Jadwal Konsultasi Mendatang</h3>
+                                <h3 className="text-lg font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Jadwal Konsultasi Mendatang</h3>
                                 <div className="space-y-3 max-h-72 overflow-y-auto">
                                     {recentAppointments.length > 0 ? (
                                         recentAppointments.map(app => (
@@ -3908,7 +3883,7 @@ const DoctorDashboard = ({ currentUser, appointments, users, labResults }) => {
 
     return (
         <div className="p-6 space-y-8 bg-gray-50">
-            <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Dasbor Dokter</h2>
+            <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Dasbor Dokter</h2>
 
             {/* Quick Stats */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -3939,7 +3914,7 @@ const DoctorDashboard = ({ currentUser, appointments, users, labResults }) => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Upcoming Appointments */}
                 <div className="bg-white p-6 rounded-2xl shadow-lg">
-                    <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center p-3 rounded-t-lg bg-orange-200">
+                    <h3 className="text-lg font-bold mb-4 flex items-center p-3 rounded-t-lg bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">
                         <Calendar className="mr-2 text-blue-500" /> Jadwal Konsultasi Mendatang
                     </h3>
                     <div className="space-y-4 max-h-96 overflow-y-auto pr-2">
@@ -3964,7 +3939,7 @@ const DoctorDashboard = ({ currentUser, appointments, users, labResults }) => {
 
                 {/* Recent Lab Results */}
                 <div className="bg-white p-6 rounded-2xl shadow-lg">
-                    <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center p-3 rounded-t-lg bg-orange-200">
+                    <h3 className="text-lg font-bold mb-4 flex items-center p-3 rounded-t-lg bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">
                         <FileText className="mr-2 text-purple-500" /> Laporan Hasil Lab Terbaru
                     </h3>
                     <div className="space-y-3 max-h-96 overflow-y-auto pr-2">
@@ -5046,7 +5021,7 @@ const PayrollModule = ({ currentUser, users, branches, attendance, salaryStructu
 
     return (
         <div className="p-6 bg-gray-50 min-h-screen">
-            <h2 className="text-3xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Manajemen Penggajian</h2>
+            <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600">Manajemen Penggajian</h2>
             <div className="mb-6">
                 <nav className="flex space-x-2 sm:space-x-4" aria-label="Tabs">
                     <button onClick={() => setActiveTab('dashboard')} className={`${activeTab === 'dashboard' ? 'bg-indigo-600 text-white shadow-md' : 'bg-white text-gray-600 hover:bg-gray-100'} whitespace-nowrap py-3 px-4 rounded-md font-semibold text-sm`}>Dasbor</button>
