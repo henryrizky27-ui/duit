@@ -3176,29 +3176,54 @@ export default function App() {
                     setCurrentUser(null);
                 }
 
-                // Attach snapshot listeners for all collections
-                const collectionsToWatch = [
-                    { name: 'users', setter: setUsers },
-                    { name: 'branches', setter: setBranches },
-                    { name: 'payments', setter: setPayments },
-                    { name: 'expenses', setter: setExpenses },
-                    { name: 'inventory', setter: setInventory },
-                    { name: 'labResults', setter: setLabResults },
-                    { name: 'medicalRecords', setter: setMedicalRecords },
-                    { name: 'expertConsultations', setter: setExpertConsultations },
-                    { name: 'appointments', setter: setAppointments },
-                    { name: 'lifestylePrograms', setter: setLifestylePrograms },
-                    { name: 'hbotSessions', setter: setHbotSessions },
-                    { name: 'attendance', setter: setAttendance },
-                    { name: 'salaryStructures', setter: setSalaryStructures },
-                    { name: 'payrollHistory', setter: setPayrollHistory },
-                ];
+                // Attach snapshot listeners based on user role
+                const unsubs = [];
+                const userData = userDocSnap.data();
+                const role = userData.role;
 
-                const unsubs = collectionsToWatch.map(c =>
-                    onSnapshot(collection(db, c.name), snapshot =>
-                        c.setter(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })))
-                    )
-                );
+                const setupListener = (q, setter) => {
+                    const unsub = onSnapshot(q,
+                        (snapshot) => setter(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))),
+                        (error) => console.error(`Error in snapshot listener:`, error)
+                    );
+                    unsubs.push(unsub);
+                };
+
+                // --- Base Listeners (for all roles) ---
+                setupListener(query(collection(db, 'users')), setUsers);
+                setupListener(query(collection(db, 'branches')), setBranches);
+
+                // --- Role-Specific Listeners ---
+                const { role, branchId } = userData;
+
+                if (role === 'manajemen') {
+                    // Management gets all data from all collections
+                    const collections = ['payments', 'expenses', 'inventory', 'labResults', 'medicalRecords', 'expertConsultations', 'appointments', 'lifestylePrograms', 'hbotSessions', 'attendance', 'salaryStructures', 'payrollHistory'];
+                    const setters = [setPayments, setExpenses, setInventory, setLabResults, setMedicalRecords, setExpertConsultations, setAppointments, setLifestylePrograms, setHbotSessions, setAttendance, setSalaryStructures, setPayrollHistory];
+                    collections.forEach((col, i) => setupListener(query(collection(db, col)), setters[i]));
+                } else if (role === 'doctor' || role === 'doctor_expert') {
+                    // Doctor/Expert access - only their own data
+                    setupListener(query(collection(db, 'appointments'), where('practitionerId', '==', user.uid)), setAppointments);
+                    setupListener(query(collection(db, 'medicalRecords'), where('practitionerId', '==', user.uid)), setMedicalRecords);
+                    setupListener(query(collection(db, 'labResults'), where('practitionerId', '==', user.uid)), setLabResults);
+                    setupListener(query(collection(db, 'expertConsultations')), setExpertConsultations); // Assumed to be readable by all clinical staff
+                    setupListener(query(collection(db, 'lifestylePrograms')), setLifestylePrograms); // Needs more specific rules/queries later
+                    setupListener(query(collection(db, 'hbotSessions')), setHbotSessions); // Needs more specific rules/queries later
+                    setupListener(query(collection(db, 'attendance'), where('userId', '==', user.uid)), setAttendance);
+                } else if (role === 'staf_operasional') {
+                    // Operational staff access - data for their branch
+                    if (branchId) {
+                        setupListener(query(collection(db, 'payments'), where('branchId', '==', branchId)), setPayments);
+                        setupListener(query(collection(db, 'expenses'), where('branchId', '==', branchId)), setExpenses);
+                        setupListener(query(collection(db, 'inventory'), where('branchId', '==', branchId)), setInventory);
+                        setupListener(query(collection(db, 'appointments'), where('branchId', '==', branchId)), setAppointments);
+                        setupListener(query(collection(db, 'labResults'), where('branchId', '==', branchId)), setLabResults);
+                    }
+                    // Staff also need to see some general data
+                    setupListener(query(collection(db, 'lifestylePrograms')), setLifestylePrograms);
+                    setupListener(query(collection(db, 'hbotSessions')), setHbotSessions);
+                    setupListener(query(collection(db, 'attendance'), where('userId', '==', user.uid)), setAttendance);
+                }
 
                 setLoading(false); // Stop loading after listeners are attached
 
